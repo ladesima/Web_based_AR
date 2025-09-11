@@ -1,0 +1,98 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #f0f0f0; /* Warna latar belakang halaman */
+}
+
+/* Kontainer untuk ARView di dalam ARPage.tsx */
+.ar-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px; /* Lebar area AR */
+  height: 650px;    /* Tinggi area AR */
+  margin: 1rem auto;
+  border: 1px solid #ccc;
+  background: #000;
+  overflow: hidden !important; /* Wajib ada untuk memotong video */
+}
+
+/* Wrapper komponen React di dalam ARView.tsx */
+.ar-component-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Container video yang dibuat oleh AR.js */
+#arjs-video-container {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Video kamera, diformat agar selalu menutupi container tanpa bar hitam */
+#arjs-video {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+/* A-Frame canvas */
+a-scene, .a-canvas {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  z-index: 1 !important;
+}
+
+/* UI Overlays */
+.overlayTip, .toolbar {
+  position: absolute;
+  z-index: 10;
+  color: white;
+}
+
+.toolbar {
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.toolbar select, .toolbar a {
+  padding: 4px 8px;
+}
+
+.overlayTip {
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  padding: 10px 18px;
+  border-radius: 25px;
+  font-size: 15px;
+  text-align: center;
+  white-space: nowrap;
+  pointer-events: none;
+}
